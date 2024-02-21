@@ -38,7 +38,7 @@ public class JwtUtil {
     private int limit_frequency;
 
     @Resource
-    StringRedisTemplate template;
+    RedisUtil redisUtil;
 
     @Resource
     FlowUtil utils;
@@ -93,7 +93,8 @@ public class JwtUtil {
             return false;
         Date now = new Date();
         long expire = Math.max(time.getTime() - now.getTime(), 0);
-        template.opsForValue().set(Const.JWT_BLACK_LIST + uuid, "", expire, TimeUnit.MILLISECONDS);
+        redisUtil.set(Const.JWT_BLACK_LIST + uuid, "",expire);
+        // template.opsForValue().set(Const.JWT_BLACK_LIST + uuid, "", expire, TimeUnit.MILLISECONDS);
         return true;
     }
 
@@ -134,6 +135,6 @@ public class JwtUtil {
      * @return 是否操作成功
      */
     public boolean isInvalidToken(String uuid){
-        return Boolean.TRUE.equals(template.hasKey(Const.JWT_BLACK_LIST + uuid));
+        return Boolean.TRUE.equals(redisUtil.hasKey(Const.JWT_BLACK_LIST + uuid));
     }
 }
