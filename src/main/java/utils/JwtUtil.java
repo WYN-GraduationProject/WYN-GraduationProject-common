@@ -60,7 +60,7 @@ public class JwtUtil {
      * @param userId 用户ID
      * @return 是否通过频率检测
      */
-    public boolean frequencyCheck(int userId){
+    public boolean frequencyCheck(Integer userId){
         String key = Const.JWT_FREQUENCY + userId;
         return utils.limitOnceUpgradeCheck(key, limit_frequency, limit_base, limit_upgrade);
     }
