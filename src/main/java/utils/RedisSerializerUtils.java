@@ -23,7 +23,6 @@ public class RedisSerializerUtils<T> implements RedisSerializer<T> {
         if (t == null) {
             return new byte[0];
         }
-        // 注意：根据FastJson2的文档，选择合适的SerializerFeature
         return JSON.toJSONString(t, JSONWriter.Feature.WriteClassName).getBytes(DEFAULT_CHARSET);
     }
 
