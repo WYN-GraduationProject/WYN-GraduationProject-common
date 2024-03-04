@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "response.proto";
+import "common/response.proto";
 
 package video;
 
