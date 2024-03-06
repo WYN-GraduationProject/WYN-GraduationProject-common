@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: auth-service-ci/cd
+name: common-ci/cd
 
 on:
   push:
