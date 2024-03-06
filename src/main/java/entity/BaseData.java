@@ -3,6 +3,7 @@ package entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.function.Consumer;
 /**
  * 用于DTO快速转换VO实现，只需将DTO类继承此类即可使用
  */
-public interface BaseData {
+public interface BaseData extends Serializable {
     /**
      * 创建指定的VO类并将当前DTO对象中的所有成员变量值直接复制到VO对象中
      * @param clazz 指定VO类型
