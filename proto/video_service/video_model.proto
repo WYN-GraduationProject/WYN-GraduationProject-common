@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package video_service;
+
+// Video类型的消息定义
+
+message VideoFrame {
+    bytes data = 1; // 视频数据帧
+    bool is_final = 2; // 是否是最后一帧
+}
+
+message ProcessedVideoFrame {
+    bytes data = 1; // 处理后的视频数据帧
+    bool is_final = 2; // 是否是最后一帧
+}
