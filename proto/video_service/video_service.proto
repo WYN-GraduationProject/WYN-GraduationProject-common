@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package video_service;
+
+import "proto/video_service/video_model.proto";
+
+service VideoService {
+    rpc ProcessVideo(stream VideoFrame) returns (stream ProcessedVideoFrame);
+}
