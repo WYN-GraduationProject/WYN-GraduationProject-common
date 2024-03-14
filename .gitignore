@@ -30,7 +30,7 @@ build/
 !**/src/test/**/build/
 .idea/
 
-/src/test
+/java_common/src/test
 
 ### VS Code ###
 .vscode/
