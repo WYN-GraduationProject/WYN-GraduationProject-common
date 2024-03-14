@@ -8,9 +8,10 @@ message VideoFrame {
     bytes data = 1; // 视频数据帧
     bool is_final = 2; // 是否是最后一帧
     float fps = 3; // 视频帧率
+    string video_id = 4; // 视频id
 }
 
 message ProcessedVideoFrame {
     bytes data = 1; // 处理后的视频数据帧
-    bool is_final = 2; // 是否是最后一帧
+    string video_path = 2; // 视频路径
 }
