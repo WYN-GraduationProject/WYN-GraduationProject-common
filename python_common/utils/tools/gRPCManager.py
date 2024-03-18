@@ -3,12 +3,15 @@ from contextlib import asynccontextmanager
 from utils.tools.NacosManager import NacosManager, _NACOS_MANAGER
 from utils.tools.ServiceHandler import ServiceHandler
 from utils.tools.Singleton import singleton
+from .LoggingFormatter import LoggerManager
 
 from grpc.aio import insecure_channel
 
 import yaml
 
 __all__ = ['GrpcManager']
+
+logger = LoggerManager(logger_name="GrpcManager").get_logger()
 
 
 @singleton
@@ -45,6 +48,7 @@ class GrpcManager:
                 if target is not None:
                     host, port = self.get_service_config(service)
                     target_url = host + ":" + str(port)
+                    logger.info(f"正在连接 {target_url}...")
                     async with insecure_channel(target_url) as channel:
                         yield target(channel)
 
