@@ -22,7 +22,7 @@ jobs:
       - name: 复制文件
         run: |
           cd WYN-GraduationProject-common
-          git checkout main
+          git checkout develop
           source .env
           cp -a -r -f ./proto/ ${PUBLIC_REPOSITORY_PATH}/proto/
           cp -a -r -f ./python_common/utils/ ${PUBLIC_REPOSITORY_PATH}/python_common/
@@ -31,5 +31,5 @@ jobs:
           cp -a -r -f ./docker-compose.yml ${PUBLIC_REPOSITORY_PATH}/
           cp -a -r -f .env ${PUBLIC_REPOSITORY_PATH}/
         env:
-          _321CQU_PUBLIC_REPOSITORY_PATH: ${{ secrets.PUBLIC_REPOSITORY_PATH }}
+          PUBLIC_REPOSITORY_PATH: ${{ secrets.PUBLIC_REPOSITORY_PATH }}
           ENV_FILE_PATH: ./.env
