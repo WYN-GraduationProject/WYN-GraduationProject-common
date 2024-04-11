@@ -1,6 +1,8 @@
 import os
+import uuid
 from typing import List, Optional
 from utils.tools.LoggingFormatter import LoggerManager
+from fastapi import UploadFile
 import cv2 as cv
 import numpy as np
 
@@ -36,6 +38,27 @@ class VideoModel:
         self.id = id
         self.data = data
         self.fps = fps
+
+    @staticmethod
+    async def http_video_save(video: UploadFile) -> 'VideoModel':
+        """
+        保存上传的视频
+        :param video: 上传的视频
+        :return: 视频实体
+        """
+        video_id = str(uuid.uuid4())
+        video_filename = f"{video_id}.mp4"
+        video_save_path = f"video_data/original/"
+        video_model = VideoModel(video_save_path, video_filename, video_id, [], 30)
+        # 创建保存视频的目录
+        os.makedirs(video_save_path, exist_ok=True)
+        # 保存上传的视频到文件
+        filepath = os.path.join(video_save_path, video_filename)
+        with open(filepath, "wb") as f:
+            f.write(await video.read())
+        # 打印文件路径和视频文件名
+        logger.info(f"Saved video to {filepath}")
+        return video_model
 
     async def save(self):
         """
