@@ -48,7 +48,7 @@ class VideoModel:
         """
         video_id = str(uuid.uuid4())
         video_filename = f"{video_id}.mp4"
-        video_save_path = f"video_data/original/"
+        video_save_path = f"video_data/original"
         video_model = VideoModel(video_save_path, video_filename, video_id, [], 30)
         # 创建保存视频的目录
         os.makedirs(video_save_path, exist_ok=True)
