@@ -19,6 +19,16 @@ class VideoServiceStub(object):
                 request_serializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
                 response_deserializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
                 )
+        self.FaceDetection = channel.stream_stream(
+                '/video_service.VideoService/FaceDetection',
+                request_serializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
+                response_deserializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
+                )
+        self.ObjectDetection = channel.stream_stream(
+                '/video_service.VideoService/ObjectDetection',
+                request_serializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
+                response_deserializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
+                )
 
 
 class VideoServiceServicer(object):
@@ -30,11 +40,33 @@ class VideoServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def FaceDetection(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ObjectDetection(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_VideoServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ProcessVideo': grpc.stream_stream_rpc_method_handler(
                     servicer.ProcessVideo,
+                    request_deserializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.FromString,
+                    response_serializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.SerializeToString,
+            ),
+            'FaceDetection': grpc.stream_stream_rpc_method_handler(
+                    servicer.FaceDetection,
+                    request_deserializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.FromString,
+                    response_serializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.SerializeToString,
+            ),
+            'ObjectDetection': grpc.stream_stream_rpc_method_handler(
+                    servicer.ObjectDetection,
                     request_deserializer=proto_dot_video__service_dot_video__model__pb2.VideoFrame.FromString,
                     response_serializer=proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.SerializeToString,
             ),
@@ -60,6 +92,40 @@ class VideoService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.stream_stream(request_iterator, target, '/video_service.VideoService/ProcessVideo',
+            proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
+            proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FaceDetection(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/video_service.VideoService/FaceDetection',
+            proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
+            proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ObjectDetection(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/video_service.VideoService/ObjectDetection',
             proto_dot_video__service_dot_video__model__pb2.VideoFrame.SerializeToString,
             proto_dot_video__service_dot_video__model__pb2.ProcessedVideoFrame.FromString,
             options, channel_credentials,

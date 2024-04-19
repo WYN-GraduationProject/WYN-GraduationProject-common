@@ -5,7 +5,7 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class VideoFrame(_message.Message):
-    __slots__ = ["data", "is_final", "fps", "video_id"]
+    __slots__ = ("data", "is_final", "fps", "video_id")
     DATA_FIELD_NUMBER: _ClassVar[int]
     IS_FINAL_FIELD_NUMBER: _ClassVar[int]
     FPS_FIELD_NUMBER: _ClassVar[int]
@@ -17,7 +17,7 @@ class VideoFrame(_message.Message):
     def __init__(self, data: _Optional[bytes] = ..., is_final: bool = ..., fps: _Optional[float] = ..., video_id: _Optional[str] = ...) -> None: ...
 
 class ProcessedVideoFrame(_message.Message):
-    __slots__ = ["data", "video_path"]
+    __slots__ = ("data", "video_path")
     DATA_FIELD_NUMBER: _ClassVar[int]
     VIDEO_PATH_FIELD_NUMBER: _ClassVar[int]
     data: bytes

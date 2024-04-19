@@ -51,8 +51,5 @@ class GrpcManager:
                     logger.info(f"正在连接 {target_url}...")
                     async with insecure_channel(target_url) as channel:
                         yield target(channel)
-
-
-if __name__ == "__main__":
-    GrpcManager()
-    print("done")
+                else:
+                    logger.error(f"无法获取 {service} 的 stub 类")
