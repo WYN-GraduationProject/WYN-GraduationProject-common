@@ -57,7 +57,7 @@ class VideoModel:
         with open(filepath, "wb") as f:
             f.write(await video.read())
         # 打印文件路径和视频文件名
-        logger.info(f"Saved video to {filepath}")
+        logger.info(f"保存视频至 {filepath}")
         return video_model
 
     async def save(self):

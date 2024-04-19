@@ -6,4 +6,6 @@ import "proto/video_service/video_model.proto";
 
 service VideoService {
     rpc ProcessVideo(stream VideoFrame) returns (stream ProcessedVideoFrame);
+    rpc FaceDetection(stream VideoFrame) returns (stream ProcessedVideoFrame);
+    rpc ObjectDetection(stream VideoFrame) returns (stream ProcessedVideoFrame);
 }
